@@ -113,3 +113,17 @@ button:hover {
     cursor: pointer;
     transition: ease-in 200ms;
 }
+
+/* Result Container */
+
+.result-container p {
+    font-family: var(--body-font-family);
+    font-size: var(--fs-h2);
+    text-align: center;
+    padding-block: 1.5rem;
+    color: rgba(0, 0, 0, .6);;
+}
+
+.result-container p:first-child {
+    padding-top: 2rem;
+}

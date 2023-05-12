@@ -98,54 +98,113 @@
 
 
 
-function playRound() {
-  let playerSelection = prompt("Choose Rock, Paper, or Scissors");
-  playerSelection = playerSelection.toLowerCase();
 
-  if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-  alert("Please choose again, incorrect choice chosen");
-  return playRound();
-  }
 
-  const options = ["rock", "paper", "scissors"];
-  let computerSelection = options[Math.floor(Math.random() * options.length)];
-  let result;
 
-  if (playerSelection === computerSelection) {
-    result = "tie";
-  } else if ((playerSelection === "rock" && computerSelection === "scissors") || 
-             (playerSelection === "paper" && computerSelection === "rock") || 
-             (playerSelection === "scissors" && computerSelection === "paper")) {
-    result = "win";
-  } else {
-    result = "lose";
-  }
-  return result;
-};
+// function playRound() {
+//   let playerSelection = prompt("Choose Rock, Paper, or Scissors");
+//   playerSelection = playerSelection.toLowerCase();
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  for (let i = 1; i <= 5; i++) {
-    const result = playRound();
-    if (result === "win") {
-      playerScore++;
-      alert(`You win round ${i}!`);
-    } else if (result === "lose") {
-      computerScore++;
-      alert(`Computer wins round ${i}!`);
-    } else {
-      alert(`Round ${i} is a tie.`);
-    }
-  }
-  if (playerScore > computerScore) {
-    alert(`You win the game! Final score: You ${playerScore}, Computer ${computerScore}.`);
-  } else if (playerScore < computerScore) {
-    alert(`Computer wins the game! Final score: You ${playerScore}, Computer ${computerScore}.`);
-  } else {
-    alert(`The game is a tie! Final score: You ${playerScore}, Computer ${computerScore}.`);
-  }
-}
+//   if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+//   alert("Please choose again, incorrect choice chosen");
+//   return playRound();
+//   }
 
-let playGame = game();
-console.log(playGame);
+//   const options = ["rock", "paper", "scissors"];
+//   let computerSelection = options[Math.floor(Math.random() * options.length)];
+//   let result;
+
+//   if (playerSelection === computerSelection) {
+//     result = "tie";
+//   } else if ((playerSelection === "rock" && computerSelection === "scissors") || 
+//              (playerSelection === "paper" && computerSelection === "rock") || 
+//              (playerSelection === "scissors" && computerSelection === "paper")) {
+//     result = "win";
+//   } else {
+//     result = "lose";
+//   }
+//   return result;
+// };
+
+// function game() {
+//   let playerScore = 0;
+//   let computerScore = 0;
+//   for (let i = 1; i <= 5; i++) {
+//     const result = playRound();
+//     if (result === "win") {
+//       playerScore++;
+//       alert(`You win round ${i}!`);
+//     } else if (result === "lose") {
+//       computerScore++;
+//       alert(`Computer wins round ${i}!`);
+//     } else {
+//       alert(`Round ${i} is a tie.`);
+//     }
+//   }
+//   if (playerScore > computerScore) {
+//     alert(`You win the game! Final score: You ${playerScore}, Computer ${computerScore}.`);
+//   } else if (playerScore < computerScore) {
+//     alert(`Computer wins the game! Final score: You ${playerScore}, Computer ${computerScore}.`);
+//   } else {
+//     alert(`The game is a tie! Final score: You ${playerScore}, Computer ${computerScore}.`);
+//   }
+// }
+
+// let playGame = game();
+// console.log(playGame);
+
+// ON CLICK Rock, Paper, Scissors //
+
+    const rockBtn = document.querySelector('#rock-btn');
+    const paperBtn = document.querySelector('#paper-btn');
+    const scissorsBtn = document.querySelector('#scissors-btn');
+    const resultContainer = document.querySelector('#result-container');
+
+
+    rockBtn.addEventListener("click", () => playRound("rock"));
+    paperBtn.addEventListener("click", () => playRound("paper"));
+    scissorsBtn.addEventListener("click", () => playRound("scissors"));
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function playRound(playerSelection) {
+      const options = ["rock", "paper", "scissors"];
+      let computerSelection = options[Math.floor(Math.random() * options.length)];
+
+      let result;
+
+      if (playerSelection === computerSelection) {
+        result = "It's a tie!"
+      } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") || 
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === " paper")
+      ) { 
+        result = "You win this round!";
+        playerScore++;
+      } else {
+        result = "Computer win's this round!";
+        computerScore++;
+      }
+
+      resultContainer.innerHTML = 
+      `<p>${result}</p>
+      <p>Player Score: ${playerScore}</p>
+      <p>Computer Score: ${computerScore}</p>`
+      ;
+
+      if (playerScore === 5) {
+        resultContainer.innerHTML += "<p>Congratulations! You win the game!</p>";
+        disableButtons();
+      } else if (computerScore === 5) {
+        resultContainer.innerHTML += "<p>Computer wins the game!</p>";
+        disableButtons();
+      }
+    };
+    
+    function disableButtons() {
+      rockBtn.disabled = true;
+      paperBtn.disabled = true;
+      scissorsBtn.disabled = true;
+    };

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock, Paper, Scissors</title>
-  <!-- <script src="script.js"></script> -->
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,42 +23,26 @@
     <div class="input-container">
       <div class="rock">
         <div class="svg-wrapper">
-          <button data-button="rock" class="rock"></button>
+          <button data-src="rock" class="rock" id="rock-btn"></button>
           <p class="rock-description"></p>
         </div>
       </div>
       <div class="paper">
         <div class="svg-wrapper">
-          <button data-button="paper" class="paper"></button>
+          <button data-src="paper" class="paper" id="paper-btn"></button>
           <p class="paper-description"></p>
         </div>
       </div>
       <div class="scissors">
         <div class="svg-wrapper">  
-          <button data-button="scissors" class="scissors"></button>
+          <button data-src="scissors" class="scissors" id="scissors-btn"></button>
           <p class="scissors-description"></p>
         </div>
       </div>
     </div>
-    <div class="result-container"></div>
+    <div class="result-container" id="result-container">
+    </div>
   </div>
-
-  <script>
-
-
-    
-    const rock = document.querySelector('[data-button="rock"]').addEventListener("click",function(e) {
-      console.log(this.classList.value);
-    });
-
-    const paper = document.querySelector('[data-button="paper"]').addEventListener("click",function(e) {
-      console.log(this.classList.value);
-    });
-
-    const scissors = document.querySelector('[data-button="scissors"]').addEventListener("click",function(e) {
-      console.log(this.classList.value);
-    });
-
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
